@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: api
+    entrypoint: sh -c "yarn --frozen-lockfile && yarn start:dev"
+    env_file:
+      - .env
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - api_net
+    depends_on:
+      - postgresdb
+
+  postgresdb:
+    container_name: postgresdb
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - postgres_v_data:/var/lib/postgresql/data
+    networks:
+      - api_net
+
+volumes:
+  postgres_v_data:
+
+networks:
+  api_net:
+    driver: bridge
