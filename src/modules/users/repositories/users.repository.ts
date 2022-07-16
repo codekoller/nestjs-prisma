@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, user as User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { InstancePrisma } from '@/prisma/instance.prisma';
 import {
   AddUserRepository,
@@ -18,14 +18,18 @@ export class UsersRepository
 {
   constructor(private readonly instancePrisma: InstancePrisma) {}
 
-  async add(data: Prisma.userCreateInput): Promise<User> {
+  async add(data: Prisma.UserCreateInput): Promise<User> {
     return await this.instancePrisma.user.create({
       data,
     });
   }
 
   async findUsers(): Promise<User[]> {
-    return await this.instancePrisma.user.findMany();
+    return await this.instancePrisma.user.findMany({
+      include: {
+        roles: true,
+      },
+    });
   }
 
   async findById(id: string): Promise<User> {
