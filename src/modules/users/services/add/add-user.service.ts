@@ -1,5 +1,5 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { user as User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { AddUserDTO } from '@/modules/users/dtos/add-user.dto';
 import { UsersRepository } from '@/modules/users/repositories/users.repository';
 import { BcryptAdapter } from '@/infra/cryptography/bcrypt-adapter/bcrypt-adapter';
