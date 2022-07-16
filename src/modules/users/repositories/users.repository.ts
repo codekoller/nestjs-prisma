@@ -24,21 +24,8 @@ export class UsersRepository
     });
   }
 
-  async findUsers(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.userWhereUniqueInput;
-    where?: Prisma.userWhereInput;
-    orderBy?: Prisma.userOrderByWithRelationInput;
-  }): Promise<User[]> {
-    const { skip, take, cursor, where, orderBy } = params;
-    return await this.instancePrisma.user.findMany({
-      skip,
-      take,
-      cursor,
-      where,
-      orderBy,
-    });
+  async findUsers(): Promise<User[]> {
+    return await this.instancePrisma.user.findMany();
   }
 
   async findById(id: string): Promise<User> {
