@@ -1,0 +1,7 @@
+export enum RoleEnum {
+  ADMIN = 'ADMIN',
+  SUPER_ADMIN = 'SUPER_ADMIN',
+  SYSTEM_ADMIN = 'SYSTEM_ADMIN',
+  USER = 'USER',
+  SYSTEM_USER = 'SYSTEM_USER',
+}
