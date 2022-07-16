@@ -1,5 +1,5 @@
-import { Prisma, User } from '@prisma/client';
+import { Prisma, user as User } from '@prisma/client';
 
 export interface AddUserRepository {
-  add(data: Prisma.UserCreateInput): Promise<User>;
+  add(data: Prisma.userCreateInput): Promise<User>;
 }

@@ -19,7 +19,7 @@ export class UsersRepository
   constructor(private readonly instancePrisma: InstancePrisma) {}
 
   async add(data: Prisma.userCreateInput): Promise<User> {
-    return this.instancePrisma.user.create({
+    return await this.instancePrisma.user.create({
       data,
     });
   }
@@ -32,7 +32,7 @@ export class UsersRepository
     orderBy?: Prisma.userOrderByWithRelationInput;
   }): Promise<User[]> {
     const { skip, take, cursor, where, orderBy } = params;
-    return this.instancePrisma.user.findMany({
+    return await this.instancePrisma.user.findMany({
       skip,
       take,
       cursor,
@@ -42,10 +42,10 @@ export class UsersRepository
   }
 
   async findById(id: string): Promise<User> {
-    return this.instancePrisma.user.findUnique({ where: { id } });
+    return await this.instancePrisma.user.findUnique({ where: { id } });
   }
 
   async findByEmail(email: string): Promise<User> {
-    return this.instancePrisma.user.findUnique({ where: { email } });
+    return await this.instancePrisma.user.findUnique({ where: { email } });
   }
 }
