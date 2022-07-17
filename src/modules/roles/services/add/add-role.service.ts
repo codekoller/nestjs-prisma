@@ -1,8 +1,8 @@
 import { FindUserByIdService } from '@/modules/users/services/find-by-id/find-user-by-id.service';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { Role } from '@prisma/client';
-import { AddRoleDTO } from '../../dtos/add-role.dto';
-import { RolesRepository } from '../../repositories/roles.repository';
+import { AddRoleDTO } from '@/modules/roles/dtos/add-role.dto';
+import { RolesRepository } from '@/modules/roles/repositories/roles.repository';
 
 @Injectable()
 export class AddRoleService {
